@@ -6,19 +6,18 @@ Deep Learning based stock price prediction model. Uses 70% data as training data
 
 ## Install requirements:
 
-conda install matplotlib
-
-'''bash
+```bash
 pip install numpy
 pip install pandas
+conda install matplotlib
 pip install yfinance
 pip install -U scikit-learn
 pip install tensorflow
 pip install keras
-'''
+```
 
 ## To Run the Deployed Model execute this at installation location:
 
-'''bash
+```bash
 streamlit run app.py
-'''
+```
