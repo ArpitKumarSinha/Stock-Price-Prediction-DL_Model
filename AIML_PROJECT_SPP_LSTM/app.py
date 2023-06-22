@@ -7,6 +7,7 @@ import yfinance as yfin
 from sklearn.preprocessing import MinMaxScaler
 yfin.pdr_override()
 import streamlit as st
+from sklearn.metrics import mean_absolute_error
 #Importing the model
 from keras.layers import Dense, Dropout , LSTM
 from keras.models import Sequential
@@ -140,7 +141,9 @@ st.subheader('Predicted Price vs Original Price')
 fig2 = plt.figure(figsize=(12,6))
 plt.plot(y_test, 'b' ,label = 'Original Price')
 plt.plot(y_predicted, 'r' ,label = 'Predicted Price')
+x=mean_absolute_error(y_test,y_predicted)
 plt.xlabel('Time')
 plt.ylabel('Price')
 plt.legend()
 st.pyplot(fig2)
+print(x)
