@@ -67,7 +67,7 @@ x_train=[]
 y_train=[]
 for i in range(100,data_training.shape[0]):
     x_train.append(data_training_array[i-100:i])
-    y_train.append(data_training_array[i:0])
+    y_train.append(data_training_array[i,0])
 
 x_train,y_train = np.array(x_train), np.array(y_train)
 
