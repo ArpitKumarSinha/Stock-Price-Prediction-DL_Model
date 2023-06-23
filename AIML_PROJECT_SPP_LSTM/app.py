@@ -7,6 +7,7 @@ import yfinance as yfin
 from sklearn.preprocessing import MinMaxScaler
 yfin.pdr_override()
 import streamlit as st
+from sklearn.metrics import mean_absolute_error
 #Importing the model
 from keras.layers import Dense, Dropout , LSTM
 from keras.models import Sequential
@@ -36,8 +37,9 @@ st.pyplot(fig)
 st.subheader('Closing Price vs Time Chart with 100 MA')
 ma100=df.Close.rolling(100).mean()
 fig = plt.figure(figsize = (12,6))
-plt.plot(ma100)
-plt.plot(df.Close)
+plt.plot(ma100, label='100 days Moving Average')
+plt.plot(df.Close, label='Closing Price')
+plt.legend()
 st.pyplot(fig)
 
 
@@ -45,9 +47,10 @@ st.subheader('Closing Price vs Time Chart with 100 MA and 200 MA')
 ma100=df.Close.rolling(100).mean()
 ma200=df.Close.rolling(200).mean()
 fig = plt.figure(figsize = (12,6))
-plt.plot(ma200 , 'r')
-plt.plot(ma100 , 'g')
-plt.plot(df.Close , 'b')
+plt.plot(ma200 , 'r', label='200 days Moving Average')
+plt.plot(ma100 , 'g', label='100 days Moving Average')
+plt.plot(df.Close , 'b',label='Closing Price')
+plt.legend()
 st.pyplot(fig)
 
 
@@ -140,7 +143,11 @@ st.subheader('Predicted Price vs Original Price')
 fig2 = plt.figure(figsize=(12,6))
 plt.plot(y_test, 'b' ,label = 'Original Price')
 plt.plot(y_predicted, 'r' ,label = 'Predicted Price')
+x=mean_absolute_error(y_test,y_predicted)
 plt.xlabel('Time')
 plt.ylabel('Price')
 plt.legend()
 st.pyplot(fig2)
+print(x)
+st.subheader("Mean Absolute Error:")
+st.subheader(x)
