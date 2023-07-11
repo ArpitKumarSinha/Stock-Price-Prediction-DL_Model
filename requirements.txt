@@ -1,7 +1,7 @@
 pip install numpy
 pip install pandas
-conda install matplotlib
 pip install yfinance
 pip install -U scikit-learn
 pip install tensorflow
 pip install keras
+conda install matplotlib
